@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next pisces use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="javascript,">
+  <meta name="keywords" content="Javascript,">
 
 
 
@@ -84,14 +84,14 @@
 
 
 <meta name="description" content="1.对象字面量123456789101112var person = &amp;#123;    name : &quot;Bob&quot; ,    age : 23,    gender : &apos;male&apos; ,    interests : [&apos;music&apos;,&apos;skiing&apos;],    bio : function()&amp;#123;        alert(this.name + &apos;&apos; + &apos;is&apos; + this.age">
-<meta name="keywords" content="javascript">
+<meta name="keywords" content="Javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript创建对象的几种模式浅析">
 <meta property="og:url" content="http://damnsingle.me/2018/JavaScript创建对象的几种模式浅析/index.html">
 <meta property="og:site_name" content="党参枸">
 <meta property="og:description" content="1.对象字面量123456789101112var person = &amp;#123;    name : &quot;Bob&quot; ,    age : 23,    gender : &apos;male&apos; ,    interests : [&apos;music&apos;,&apos;skiing&apos;],    bio : function()&amp;#123;        alert(this.name + &apos;&apos; + &apos;is&apos; + this.age">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-28T12:30:29.121Z">
+<meta property="og:updated_time" content="2018-11-28T13:42:15.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript创建对象的几种模式浅析">
 <meta name="twitter:description" content="1.对象字面量123456789101112var person = &amp;#123;    name : &quot;Bob&quot; ,    age : 23,    gender : &apos;male&apos; ,    interests : [&apos;music&apos;,&apos;skiing&apos;],    bio : function()&amp;#123;        alert(this.name + &apos;&apos; + &apos;is&apos; + this.age">
@@ -102,7 +102,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -307,6 +307,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">-Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -335,20 +357,22 @@
 
       
         <h3 id="1-对象字面量"><a href="#1-对象字面量" class="headerlink" title="1.对象字面量"></a>1.对象字面量</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name : <span class="string">"Bob"</span> ,</span><br><span class="line">    age : <span class="number">23</span>,</span><br><span class="line">    gender : <span class="string">'male'</span> ,</span><br><span class="line">    interests : [<span class="string">'music'</span>,<span class="string">'skiing'</span>],</span><br><span class="line">    bio : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name + <span class="string">''</span> + <span class="string">'is'</span> + <span class="keyword">this</span>.age + <span class="keyword">this</span>.age + <span class="string">'yaers old. He likes'</span> + <span class="keyword">this</span>.interests[<span class="number">0</span>] + <span class="string">'and'</span> + <span class="keyword">this</span>.interests[<span class="number">1</span>] + <span class="string">'.'</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    greeting : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">'Hi! I\'m'</span> + <span class="keyword">this</span>.name + <span class="string">'.'</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>例子中创建了一个名为person的对象，并为它添加了四个属性（<code>name</code>，<code>age</code>，<code>gender</code>,<code>interests</code>）和两个方法（<code>bio()</code>，<code>greeting()</code>）。</p>
-<p>一个如上所示的对象被称之为对象的字面量(literal)——手动的写出对象的内容来创建一个对象。但这个方法有个明显的缺点：使用同一个接口创建很多对象，会产生大量重复的代码。</p>
+<p>例子中创建了一个名为person的对象，并为它添加了四个属性（<code>name</code>，<code>age</code>，<code>gender</code>,<code>interests</code>）和两个方法（<code>bio()</code>，<code>greeting()</code>）。<br><a id="more"></a><br>一个如上所示的对象被称之为对象的字面量(literal)——手动的写出对象的内容来创建一个对象。但这个方法有个明显的缺点：使用同一个接口创建很多对象，会产生大量重复的代码。</p>
 <h3 id="2-工厂模式"><a href="#2-工厂模式" class="headerlink" title="2.工厂模式"></a>2.工厂模式</h3><p>该模式抽象了创建对象的具体过程，用函数来以特定接口创建对象的细节。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name,age,job</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">  o.name = name;</span><br><span class="line">  o.age = age;</span><br><span class="line">  o.job = job;</span><br><span class="line">  o.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> o;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = createPerson(<span class="string">"Zhangsan"</span>,<span class="number">32</span>,<span class="string">"Engineer"</span>);</span><br><span class="line"><span class="keyword">var</span> person2 = createPerson(<span class="string">"Lisi"</span>,<span class="number">25</span>,<span class="string">"Teacher"</span>);</span><br></pre></td></tr></table></figure>
 <p>函数<code>createPerson{}</code>能够根据接受的参数构建一个包含所有必要信息的Person对象。可以无数次的调用这个函数，每次都会返回一个包含三个属性和一个方法的对象。这种模式虽然解决了创建多个相似对象的问题，却没有解决对象识别的问题。</p>
-<a id="more"></a>
 <h3 id="3-构造函数模式"><a href="#3-构造函数模式" class="headerlink" title="3.构造函数模式"></a>3.构造函数模式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age,job</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name ;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.job = job;</span><br><span class="line">    <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//上述代码中，关键字 new 跟着一个含参函数，用于告知浏览器我们想要创建一个对象实例，非常类似函数调用。</span></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">"Zhangsan"</span>,<span class="number">32</span>,<span class="string">"Engineer"</span>);</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person(<span class="string">"Lisi"</span>,<span class="number">25</span>,<span class="string">"Teacher"</span>);</span><br><span class="line">person1.sayName();</span><br><span class="line"><span class="comment">//Zhangsan</span></span><br><span class="line">person2.sayName();</span><br><span class="line"><span class="comment">//Lisi</span></span><br></pre></td></tr></table></figure>
 <p>与工厂模式不同的是，没有显示创建对象，直接将属性和方法赋给了 <code>this</code> 对象，没有 <code>return</code>语句。需要注意的是，创建 <code>Person</code>的新实例时，必须使用 <code>new</code> 操作符。构造函数模式的问题是<code>sayName()</code>方法在每个实例上都会被重新创建一次。<code>person1</code> 和 <code>person2</code>都有 <code>sayName()</code>方法，但却不是同一个 <code>Function</code>实例，因此它们所共有的方法并不相等。以下代码可以证明。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alert(person1.sayName == person2.sayName);</span><br><span class="line"><span class="comment">//false</span></span><br></pre></td></tr></table></figure>
 <h3 id="4-原型模式"><a href="#4-原型模式" class="headerlink" title="4.原型模式"></a>4.原型模式</h3><p>Javascript中创建的每个函数都有一个 <code>prototype</code>（原型）属性，它是一个指针，指向一个对象，包含了可以由特定类型的所有实例共享的属性和方法。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">Person.prototype.name = <span class="string">"Zhangsan"</span> ;</span><br><span class="line">Person.prototype.age = <span class="number">32</span> ;</span><br><span class="line">Person.prototype.job = <span class="string">"Engineer"</span>;</span><br><span class="line">Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br><span class="line">person1.sayName();</span><br><span class="line"><span class="comment">//Zhangsan</span></span><br><span class="line">alert(person1.sayName == person2.sayName);</span><br><span class="line"><span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 <p>关于对象原型知识的参考：</p>
-<p><em>对象原型：<a href="https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Objects/Object_prototypes" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Objects/Object_prototypes</a></em></p>
+<blockquote>
+<p><em>对象原型：<a href="https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Objects/Object_prototypes" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript</a></em></p>
+</blockquote>
+<blockquote>
 <p><em>JavaScript中创建对象的模式汇总：<a href="https://www.jb51.net/article/82644.htm" target="_blank" rel="noopener">https://www.jb51.net/article/82644.htm</a></em></p>
+</blockquote>
 <h3 id="5-组合使用构造函数模式和原型模式"><a href="#5-组合使用构造函数模式和原型模式" class="headerlink" title="5.组合使用构造函数模式和原型模式"></a>5.组合使用构造函数模式和原型模式</h3><p>组合使用构造函数模式和原型模式中，构造函数用于定义实例属性，原型模型用于定义方法和共享的属性。这样每个实例都会有自己的一份实例属性的副本，同时也可以共享对方法的引用，最大限度的节省内存。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age,job</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name ;</span><br><span class="line">    <span class="keyword">this</span>.age = age ;</span><br><span class="line">    <span class="keyword">this</span>.job = job ;</span><br><span class="line">    <span class="keyword">this</span>.friends = [<span class="string">"Wangwu"</span>,<span class="string">"Maliu"</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    <span class="keyword">constructor</span> : Person,</span><br><span class="line">    sayName : function()&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">"Zhangsan"</span>,<span class="number">32</span>,<span class="string">"Engineer"</span>);</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person(<span class="string">"Lisi"</span>,<span class="number">25</span>,<span class="string">"Teacher"</span>);</span><br><span class="line">person1.friends.push(<span class="string">"Zhaoqi"</span>);</span><br><span class="line"></span><br><span class="line">alert(person1.friends);</span><br><span class="line"><span class="comment">//"Wangwu,Maliu,Zhaoqi"</span></span><br><span class="line">alert(person2.friends);</span><br><span class="line"><span class="comment">//"Wangwu,Maliu"</span></span><br><span class="line">alert(person1.friends == person2.friends);</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line">alert(person1.sayName == person2.sayName);</span><br><span class="line"><span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 <h3 id="6-动态原型模式"><a href="#6-动态原型模式" class="headerlink" title="6.动态原型模式"></a>6.动态原型模式</h3><p>动态原型模式将需要的所有信息都封装到构造函数中，通过 <code>if</code>语句判断原型中的某个属性是否存在，若不存在（在第一次调用这个构造函数的时候），执行<code>if</code>语句内部的原型初始化代码。</p>
@@ -370,7 +394,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
+            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
           
         </div>
       
@@ -468,22 +492,31 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
             
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -552,7 +585,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
@@ -651,6 +684,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
